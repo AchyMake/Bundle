@@ -13,7 +13,6 @@ import java.io.File;
 public final class Bundle extends JavaPlugin {
     private static Bundle instance;
     private Message message;
-    private BundleHandler bundleHandler;
     private InventoryHandler inventoryHandler;
     private MaterialHandler materialHandler;
     private ScheduleHandler scheduleHandler;
@@ -24,7 +23,6 @@ public final class Bundle extends JavaPlugin {
     public void onEnable() {
         instance = this;
         message = new Message();
-        bundleHandler = new BundleHandler();
         inventoryHandler = new InventoryHandler();
         materialHandler = new MaterialHandler();
         scheduleHandler = new ScheduleHandler();
@@ -74,9 +72,6 @@ public final class Bundle extends JavaPlugin {
     }
     public InventoryHandler getInventoryHandler() {
         return inventoryHandler;
-    }
-    public BundleHandler getBundleHandler() {
-        return bundleHandler;
     }
     public Message getMessage() {
         return message;

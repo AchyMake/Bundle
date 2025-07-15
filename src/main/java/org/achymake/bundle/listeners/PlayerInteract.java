@@ -1,7 +1,7 @@
 package org.achymake.bundle.listeners;
 
 import org.achymake.bundle.Bundle;
-import org.achymake.bundle.handlers.BundleHandler;
+import org.achymake.bundle.handlers.InventoryHandler;
 import org.achymake.bundle.handlers.MaterialHandler;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
@@ -16,8 +16,8 @@ public class PlayerInteract implements Listener {
     private Bundle getInstance() {
         return Bundle.getInstance();
     }
-    private BundleHandler getBundleHandler() {
-        return getInstance().getBundleHandler();
+    private InventoryHandler getInventoryHandler() {
+        return getInstance().getInventoryHandler();
     }
     private MaterialHandler getMaterials() {
         return getInstance().getMaterialHandler();
@@ -36,7 +36,7 @@ public class PlayerInteract implements Listener {
             var itemStack = event.getPlayer().getInventory().getItemInMainHand();
             if (!getMaterials().isBundle(itemStack))return;
             if (!event.getPlayer().hasPermission("bundle.event.bundle"))return;
-            getBundleHandler().open(event.getPlayer(), itemStack);
+            getInventoryHandler().open(event.getPlayer(), itemStack);
             event.setCancelled(true);
             event.setUseInteractedBlock(Event.Result.DENY);
             event.setUseItemInHand(Event.Result.DENY);
@@ -46,7 +46,7 @@ public class PlayerInteract implements Listener {
             if (itemStack == null)return;
             if (!getMaterials().isBundle(itemStack))return;
             if (!event.getPlayer().hasPermission("bundle.event.bundle"))return;
-            getBundleHandler().open(event.getPlayer(), itemStack);
+            getInventoryHandler().open(event.getPlayer(), itemStack);
             event.setCancelled(true);
             event.setUseItemInHand(Event.Result.DENY);
         }
