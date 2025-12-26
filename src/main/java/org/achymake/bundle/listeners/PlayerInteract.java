@@ -33,6 +33,7 @@ public class PlayerInteract implements Listener {
         if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             if (event.getClickedBlock() == null)return;
             if (event.getHand() != EquipmentSlot.HAND)return;
+            if (getMaterials().hasInventory(event.getClickedBlock()))return;
             var itemStack = event.getPlayer().getInventory().getItemInMainHand();
             if (!getMaterials().isBundle(itemStack))return;
             if (!event.getPlayer().hasPermission("bundle.event.bundle"))return;
