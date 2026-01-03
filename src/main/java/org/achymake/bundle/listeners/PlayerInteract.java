@@ -19,7 +19,7 @@ public class PlayerInteract implements Listener {
     private InventoryHandler getInventoryHandler() {
         return getInstance().getInventoryHandler();
     }
-    private MaterialHandler getMaterials() {
+    private MaterialHandler getMaterialHandler() {
         return getInstance().getMaterialHandler();
     }
     private PluginManager getPluginManager() {
@@ -30,26 +30,27 @@ public class PlayerInteract implements Listener {
     }
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerInteract(PlayerInteractEvent event) {
+        var player = event.getPlayer();
         if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             if (event.getClickedBlock() == null)return;
             if (event.getHand() != EquipmentSlot.HAND)return;
-            if (getMaterials().hasInventory(event.getClickedBlock()))return;
-            var itemStack = event.getPlayer().getInventory().getItemInMainHand();
-            if (!getMaterials().isBundle(itemStack))return;
-            if (!event.getPlayer().hasPermission("bundle.event.bundle"))return;
-            getInventoryHandler().open(event.getPlayer(), itemStack);
+            if (getMaterialHandler().hasInventory(event.getClickedBlock()))return;
+            var itemStack = player.getInventory().getItemInMainHand();
+            if (!getMaterialHandler().isBundle(itemStack))return;
+            if (!player.hasPermission("bundle.event.bundle"))return;
             event.setCancelled(true);
             event.setUseInteractedBlock(Event.Result.DENY);
             event.setUseItemInHand(Event.Result.DENY);
+            getInventoryHandler().open(player, itemStack);
         } else if (event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
             if (event.getHand() != EquipmentSlot.HAND)return;
             var itemStack = event.getItem();
             if (itemStack == null)return;
-            if (!getMaterials().isBundle(itemStack))return;
-            if (!event.getPlayer().hasPermission("bundle.event.bundle"))return;
-            getInventoryHandler().open(event.getPlayer(), itemStack);
+            if (!getMaterialHandler().isBundle(itemStack))return;
+            if (!player.hasPermission("bundle.event.bundle"))return;
             event.setCancelled(true);
             event.setUseItemInHand(Event.Result.DENY);
+            getInventoryHandler().open(player, itemStack);
         }
     }
 }

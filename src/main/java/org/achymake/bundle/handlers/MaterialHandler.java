@@ -10,7 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class MaterialHandler {
     public Material get(String materialName) {
-        return Material.valueOf(materialName.toUpperCase());
+        return Material.getMaterial(materialName.toUpperCase());
     }
     public boolean isBundle(ItemStack itemStack) {
         return Tag.ITEMS_BUNDLES.isTagged(itemStack.getType());
@@ -59,6 +59,8 @@ public class MaterialHandler {
         } else if (material.equals(get("note_block"))) {
             return true;
         } else if (material.equals(get("enchanting_table"))) {
+            return true;
+        } else if (material.equals(get("ender_chest"))) {
             return true;
         } else if (material.equals(get("bell"))) {
             return true;

@@ -19,7 +19,7 @@ public class InventoryClick implements Listener {
     private InventoryHandler getInventoryHandler() {
         return getInstance().getInventoryHandler();
     }
-    private MaterialHandler getMaterials() {
+    private MaterialHandler getMaterialHandler() {
         return getInstance().getMaterialHandler();
     }
     private PluginManager getPluginManager() {
@@ -36,10 +36,10 @@ public class InventoryClick implements Listener {
             if (event.getClick().equals(ClickType.SWAP_OFFHAND)) {
                 var offHand = player.getInventory().getItemInOffHand();
                 var clicked = event.getCurrentItem();
-                if (getMaterials().isStorages(offHand)) {
+                if (getMaterialHandler().isStorages(offHand)) {
                     event.setCancelled(true);
                     event.setResult(Event.Result.DENY);
-                } else if (getMaterials().isStorages(clicked)) {
+                } else if (getMaterialHandler().isStorages(clicked)) {
                     event.setCancelled(true);
                     event.setResult(Event.Result.DENY);
                 }
@@ -47,19 +47,19 @@ public class InventoryClick implements Listener {
                 var switched = player.getInventory().getItem(event.getHotbarButton());
                 var switched2 = event.getCurrentItem();
                 if (switched != null) {
-                    if (getMaterials().isStorages(switched)) {
+                    if (getMaterialHandler().isStorages(switched)) {
                         event.setCancelled(true);
                         event.setResult(Event.Result.DENY);
-                    } else if (getMaterials().isStorages(switched2)) {
+                    } else if (getMaterialHandler().isStorages(switched2)) {
                         event.setCancelled(true);
                         event.setResult(Event.Result.DENY);
                     }
                 }
                 if (switched2 != null) {
-                    if (getMaterials().isStorages(switched)) {
+                    if (getMaterialHandler().isStorages(switched)) {
                         event.setCancelled(true);
                         event.setResult(Event.Result.DENY);
-                    } else if (getMaterials().isStorages(switched2)) {
+                    } else if (getMaterialHandler().isStorages(switched2)) {
                         event.setCancelled(true);
                         event.setResult(Event.Result.DENY);
                     }
@@ -67,27 +67,27 @@ public class InventoryClick implements Listener {
             } else {
                 var clicked = event.getCurrentItem();
                 if (clicked == null)return;
-                if (!getMaterials().isStorages(clicked))return;
+                if (!getMaterialHandler().isStorages(clicked))return;
                 event.setCancelled(true);
                 event.setResult(Event.Result.DENY);
             }
         } else if (event.getClick().equals(ClickType.SWAP_OFFHAND)) {
             var offHand = player.getInventory().getItemInOffHand();
             var clicked = event.getCurrentItem();
-            if (getMaterials().isStorages(offHand)) {
+            if (getMaterialHandler().isStorages(offHand)) {
                 event.setCancelled(true);
                 event.setResult(Event.Result.DENY);
-            } else if (getMaterials().isStorages(clicked)) {
+            } else if (getMaterialHandler().isStorages(clicked)) {
                 event.setCancelled(true);
                 event.setResult(Event.Result.DENY);
             }
         } else {
             var cursorItem = event.getCursor();
             if (cursorItem == null)return;
-            if (!getMaterials().isBundle(cursorItem))return;
+            if (!getMaterialHandler().isBundle(cursorItem))return;
             var clicked = event.getCurrentItem();
             if (clicked == null)return;
-            if (!getMaterials().isStorages(clicked))return;
+            if (!getMaterialHandler().isStorages(clicked))return;
             event.setCancelled(true);
             event.setResult(Event.Result.DENY);
         }

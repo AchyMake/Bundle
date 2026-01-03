@@ -17,7 +17,7 @@ public class InventoryClose implements Listener {
     private InventoryHandler getInventoryHandler() {
         return getInstance().getInventoryHandler();
     }
-    private MaterialHandler getMaterials() {
+    private MaterialHandler getMaterialHandler() {
         return getInstance().getMaterialHandler();
     }
     private PluginManager getPluginManager() {
@@ -30,7 +30,7 @@ public class InventoryClose implements Listener {
     public void onInventoryClose(InventoryCloseEvent event) {
         var player = (Player) event.getPlayer();
         var itemStack = player.getInventory().getItemInMainHand();
-        if (!getMaterials().isBundle(itemStack))return;
+        if (!getMaterialHandler().isBundle(itemStack))return;
         if (!getInventoryHandler().hasBundle(player))return;
         if (getInventoryHandler().getBundle(player) != event.getInventory())return;
         getInventoryHandler().close(player, itemStack, event.getInventory());
