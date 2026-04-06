@@ -1,0 +1,24 @@
+name: Bundle
+version: '${project.version}'
+main: org.achymake.bundle.Bundle
+api-version: '1.21.11'
+load: POSTWORLD
+prefix: Bundle
+author: AchyMake
+description: '${project.description}'
+website: '${project.url}'
+commands:
+  bundle:
+    description: bundle main command
+    permission: bundle.command.bundle
+    permission-message: You do not have the permissions to execute the command
+permissions:
+  bundle.command.bundle:
+    description: bundle main command
+    default: op
+  bundle.event.bundle:
+    description: allows to use bundle inventory
+    default: op
+  bundle.event.join.update:
+    description: get updates on join event
+    default: op
