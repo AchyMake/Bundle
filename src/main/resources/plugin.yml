@@ -1,7 +1,7 @@
 name: Bundle
 version: '${project.version}'
 main: org.achymake.bundle.Bundle
-api-version: '26.1.2'
+api-version: '26.2'
 load: POSTWORLD
 prefix: '${project.name}'
 author: AchyMake
