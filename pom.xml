@@ -6,7 +6,7 @@
 
     <groupId>org.achymake</groupId>
     <artifactId>Bundle</artifactId>
-    <version>26.2-22</version>
+    <version>26.2-23</version>
     <packaging>jar</packaging>
 
     <name>Bundle</name>
@@ -63,7 +63,7 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>26.2.build.84-stable</version>
+            <version>26.2.build.123-stable</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
