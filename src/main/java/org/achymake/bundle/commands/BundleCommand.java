@@ -18,13 +18,21 @@ public class BundleCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
-            if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
-                getInstance().reload();
-                player.sendMessage(getMessage().addColor("&6" + getInstance().name() + "&f: reloaded"));
-                return true;
+            if (args.length == 0) {
+                player.sendMessage(getMessage().addColor("&6" + getInstance().name() + "&f: " + getInstance().version()));
+            } else if (args.length == 1) {
+                if (args[0].equalsIgnoreCase("reload")) {
+                    if (player.hasPermission("bundle.command.bundle.reload")) {
+                        getInstance().reload();
+                        player.sendMessage(getMessage().addColor("&6" + getInstance().name() + "&f: reloaded"));
+                        return true;
+                    }
+                }
             }
         } else if (sender instanceof ConsoleCommandSender consoleCommandSender) {
-            if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+            if (args.length == 0) {
+                consoleCommandSender.sendMessage(getInstance().name() + ": " + getInstance().version());
+            } else if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
                 getInstance().reload();
                 consoleCommandSender.sendMessage(getInstance().name() + ": reloaded");
                 return true;

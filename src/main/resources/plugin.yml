@@ -1,7 +1,7 @@
 name: Bundle
 version: '${project.version}'
 main: org.achymake.bundle.Bundle
-api-version: '26.2'
+api-version: '26.3'
 load: POSTWORLD
 prefix: '${project.name}'
 author: AchyMake
@@ -15,6 +15,9 @@ commands:
 permissions:
   bundle.command.bundle:
     description: bundle main command
+    default: op
+  bundle.command.bundle.reload:
+    description: bundle reload command
     default: op
   bundle.event.bundle:
     description: allows to use bundle inventory
